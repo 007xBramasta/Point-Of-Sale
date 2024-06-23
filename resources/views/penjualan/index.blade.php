@@ -22,7 +22,7 @@
 @foreach ($penjualan as $p)
 <div class="card">
     <div class="card-header cursor-pointer" data-toggle="collapse" href="#collapse{{ $p->penjualan_id }}">
-        <h3 class="card-title">{{ $loop->iteration }} | Detail Penjualan - Kode: {{ $p->penjualan_kode }}</h3>
+        <h3 class="card-title">{{ $loop->iteration }} | Detail Penjualan - Kode: {{ $p->penjualan_kode }} / {{ date('d-m-Y', strtotime($p->penjualan_tanggal))}}</h3>
         <div class="card-tools">
             <a href="{{ route('penjualan.edit', $p->penjualan_id) }}" class="btn btn-warning"><i class="fas fa-edit"></i> Edit</a>
         </div>
@@ -30,7 +30,7 @@
     
     <div id="collapse{{ $p->penjualan_id }}" class="card-body collapse">
         <p><strong>Pembeli:</strong> {{ $p->pembeli }}</p>
-        <p><strong>Tanggal Penjualan:</strong> {{ $p->penjualan_tanggal }}</p>
+        <p><strong>Tanggal Penjualan:</strong> {{ date('d-m-Y', strtotime($p->penjualan_tanggal)) }}</p>
 
         <h3>Detail Barang:</h3>
         <table class="table">

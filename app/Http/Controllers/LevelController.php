@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\LevelModel;
+use Illuminate\Validation\ValidationException;
 
 class LevelController extends Controller
 {
@@ -42,7 +43,17 @@ class LevelController extends Controller
 
     public function store(Request $request)
     {
+        try {
+            $request->validate([
+                'level_kode' => 'required|string|unique:m_level',
+                'level_nama' => 'required|string',
+            ]);
+        } catch (ValidationException $e) {
+            return redirect()->back()->withErrors($e->errors())->withInput();
+        }
+
         LevelModel::create($request->all());
+
         return redirect()->route('level.index')->with('success', 'Level created successfully');
     }
 

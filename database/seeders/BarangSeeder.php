@@ -16,70 +16,70 @@ class BarangSeeder extends Seeder
         $barang = [
             [
                 'kategori_id' => 1,
-                'barang_kode' => 'BRG001',
+                'barang_kode' => 'BRG001 - '. date('dmY'),
                 'barang_nama' => 'Laptop Asus',
                 'harga_beli' => 5000000,
                 'harga_jual' => 6000000
             ],
             [
                 'kategori_id' => 1,
-                'barang_kode' => 'BRG002',
+                'barang_kode' => 'BRG002 - '. date('dmY'),
                 'barang_nama' => 'Smartphone Samsung',
                 'harga_beli' => 3000000,
                 'harga_jual' => 3500000
             ],
             [
                 'kategori_id' => 2,
-                'barang_kode' => 'BRG003',
+                'barang_kode' => 'BRG003 - '. date('dmY'),
                 'barang_nama' => 'T-shirt Adidas',
                 'harga_beli' => 150000,
                 'harga_jual' => 200000
             ],
             [
                 'kategori_id' => 2,
-                'barang_kode' => 'BRG004',
+                'barang_kode' => 'BRG004 - '. date('dmY'),
                 'barang_nama' => 'Jeans Levi\'s',
                 'harga_beli' => 250000,
                 'harga_jual' => 300000
             ],
             [
                 'kategori_id' => 3,
-                'barang_kode' => 'BRG005',
+                'barang_kode' => 'BRG005 - '. date('dmY'),
                 'barang_nama' => 'Panci Teflon',
                 'harga_beli' => 200000,
                 'harga_jual' => 250000
             ],
             [
                 'kategori_id' => 3,
-                'barang_kode' => 'BRG006',
+                'barang_kode' => 'BRG006 - '. date('dmY'),
                 'barang_nama' => 'Blender Philips',
                 'harga_beli' => 300000,
                 'harga_jual' => 350000
             ],
             [
                 'kategori_id' => 4,
-                'barang_kode' => 'BRG007',
+                'barang_kode' => 'BRG007 - '. date('dmY'),
                 'barang_nama' => 'Ban Mobil',
                 'harga_beli' => 400000,
                 'harga_jual' => 500000
             ],
             [
                 'kategori_id' => 4,
-                'barang_kode' => 'BRG008',
+                'barang_kode' => 'BRG008 - '. date('dmY'),
                 'barang_nama' => 'Oli Mesin',
                 'harga_beli' => 100000,
                 'harga_jual' => 150000
             ],
             [
                 'kategori_id' => 5,
-                'barang_kode' => 'BRG009',
+                'barang_kode' => 'BRG009 - '. date('dmY'),
                 'barang_nama' => 'Pakaian Bayi',
                 'harga_beli' => 100000,
                 'harga_jual' => 120000
             ],
             [
                 'kategori_id' => 5,
-                'barang_kode' => 'BRG010',
+                'barang_kode' => 'BRG010 - '. date('dmY'),
                 'barang_nama' => 'Popok Bayi',
                 'harga_beli' => 50000,
                 'harga_jual' => 60000

@@ -7,11 +7,13 @@ use App\Models\BarangModel as Barang;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 
 class BarangController extends Controller
 {
     public function index()
     {
+
 
         $breadcrumb = (object) [
             'title' => 'Daftar Barang',
@@ -41,26 +43,39 @@ class BarangController extends Controller
 
     public function store(Request $request)
     {
-        // Validasi request
+        
+        try{// Validasi request
         $request->validate([
             'image' => 'required|image|max:2048|mimes:png,jpg,jpeg,webp',
             'kategori_id' => 'required',
-            'barang_kode' => 'required|unique:m_barang',
             'barang_nama' => 'required',
-            'harga_beli' => 'required',
-            'harga_jual' => 'required',
+            'harga_beli' => 'required|numeric|lt:harga_jual',
+            'harga_jual' => 'required|numeric|gt:harga_beli',
         ]);
-
+        }catch(ValidationException $e){
+            return redirect()->back()->withErrors($e->errors())->withInput();
+        }
+        
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $fileName = now()->timestamp . '_' . Str::random(10) . '.' . $image->getClientOriginalExtension();
             $directory = public_path('images/barang/');
             $image->move($directory, $fileName);
         }
+
+        $barang = Barang::orderBy('barang_kode', 'desc')->first();
+        $parts = explode('-', $barang->barang_kode);
+        $prefixAndNumber = $parts[0];
+        $number = substr($prefixAndNumber, 3); // Get the remaining characters as the number
+
+         // Increment the number part
+        $nextNumber = intval($number) + 1;
+        $barang_code =  'BRG0'.$nextNumber .' - '.date('dmY');
+
         // Buat barang baru
         Barang::create([
             'kategori_id' => $request->input('kategori_id'),
-            'barang_kode' => $request->input('barang_kode'),
+            'barang_kode' => $barang_code,
             'barang_nama' => $request->input('barang_nama'),
             'harga_beli' => $request->input('harga_beli'),
             'harga_jual' => $request->input('harga_jual'),
